@@ -1,4 +1,4 @@
-/* CSS Styles */
+   /* CSS Styles */
         * {
             margin: 0;
             padding: 0;
@@ -25,16 +25,20 @@
             text-align: center;
             margin-bottom: 30px;
             color: #2c3e50;
+            font-size: clamp(24px, 4vw, 32px);
         }
         
         .header-section {
             display: flex;
+            flex-wrap: wrap;
             justify-content: space-between;
             margin-bottom: 30px;
+            gap: 20px;
         }
         
         .company-info, .client-info {
-            width: 48%;
+            flex: 1 1 300px;
+            min-width: 0;
         }
         
         .form-group {
@@ -45,6 +49,7 @@
             display: block;
             margin-bottom: 5px;
             font-weight: 600;
+            font-size: clamp(14px, 2vw, 16px);
         }
         
         input, select, textarea {
@@ -52,13 +57,15 @@
             padding: 10px;
             border: 1px solid #ddd;
             border-radius: 4px;
-            font-size: 16px;
+            font-size: clamp(14px, 2vw, 16px);
         }
         
         .items-table {
             width: 100%;
             border-collapse: collapse;
             margin: 20px 0;
+            overflow-x: auto;
+            display: block;
         }
         
         .items-table th {
@@ -66,11 +73,13 @@
             color: white;
             padding: 12px;
             text-align: left;
+            font-size: clamp(12px, 2vw, 16px);
         }
         
         .items-table td {
             padding: 12px;
             border-bottom: 1px solid #ddd;
+            font-size: clamp(12px, 2vw, 16px);
         }
         
         .items-table tr:nth-child(even) {
@@ -85,6 +94,8 @@
             border-radius: 4px;
             cursor: pointer;
             margin-bottom: 20px;
+            font-size: clamp(14px, 2vw, 16px);
+            width: 100%;
         }
         
         .delete-item-btn {
@@ -94,6 +105,7 @@
             padding: 5px 10px;
             border-radius: 4px;
             cursor: pointer;
+            font-size: clamp(12px, 2vw, 14px);
         }
         
         .totals-section {
@@ -103,11 +115,11 @@
         
         .totals-section div {
             margin-bottom: 10px;
-            font-size: 18px;
+            font-size: clamp(16px, 3vw, 18px);
         }
         
         .grand-total {
-            font-size: 24px;
+            font-size: clamp(20px, 4vw, 24px);
             font-weight: bold;
             color: #2c3e50;
         }
@@ -115,7 +127,9 @@
         .action-buttons {
             margin-top: 30px;
             display: flex;
+            flex-wrap: wrap;
             justify-content: space-between;
+            gap: 15px;
         }
         
         .print-btn, .save-btn, .clear-btn {
@@ -123,8 +137,9 @@
             border: none;
             border-radius: 4px;
             cursor: pointer;
-            font-size: 16px;
+            font-size: clamp(14px, 2vw, 16px);
             font-weight: 600;
+            flex: 1 1 150px;
         }
         
         .print-btn {
@@ -141,6 +156,56 @@
             background-color: #e74c3c;
             color: white;
         }
+
+        /* Responsive table adjustments */
+        @media (max-width: 768px) {
+            .items-table {
+                display: block;
+                overflow-x: auto;
+                white-space: nowrap;
+            }
+            
+            .items-table th, .items-table td {
+                padding: 8px 12px;
+            }
+            
+            .header-section {
+                flex-direction: column;
+            }
+            
+            .company-info, .client-info {
+                width: 100%;
+            }
+            
+            .action-buttons {
+                flex-direction: column;
+            }
+            
+            .action-buttons > div {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 10px;
+                width: 100%;
+            }
+            
+            .action-buttons > div button {
+                flex: 1 1 120px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 15px;
+            }
+            
+            input, select, textarea {
+                padding: 8px;
+            }
+            
+            .items-table th, .items-table td {
+                padding: 6px 8px;
+            }
+        }
         
         @media print {
             .no-print {
@@ -155,5 +220,10 @@
             .container {
                 box-shadow: none;
                 padding: 0;
+            }
+            
+            .items-table {
+                display: table;
+                white-space: normal;
             }
         }
