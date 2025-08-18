@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Bill Generator</title>
+    <!-- Add jsPDF library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.25/jspdf.plugin.autotable.min.js"></script>
+    <link rel="stylesheet" href="bill.css">
+</head>
+<body>
+    <div class="container">
+        <h1>VISION</h1>
+        
+        <div class="header-section">
+            <div class="company-info">
+                <div class="form-group">
+                    <label for="company-name">Your Business Name</label>
+                    <input type="text" id="company-name" value="Sunbhai Shop">
+                </div>
+                <div class="form-group">
+                    <label for="company-address">Address</label>
+                    <textarea id="company-address" rows="3">Banani, Dhaka, Bangladesh</textarea>
+                </div>
+                <div class="form-group">
+                    <label for="company-phone">Phone</label>
+                    <input type="text" id="company-phone" value="+91 97XXX XXXXX">
+                </div>
+                <div class="form-group">
+                    <label for="company-email">Email</label>
+                    <input type="email" id="company-email" value="info@sunbhaishop.com">
+                </div>
+            </div>
+            
+            <div class="client-info">
+                <div class="form-group">
+                    <label for="invoice-number">Invoice #</label>
+                    <input type="text" id="invoice-number" value="INV-2023-001">
+                </div>
+                <div class="form-group">
+                    <label for="invoice-date">Date</label>
+                    <input type="date" id="invoice-date" value="">
+                </div>
+                <div class="form-group">
+                    <label for="client-name">Client Name</label>
+                    <input type="text" id="client-name">
+                </div>
+                <div class="form-group">
+                    <label for="client-address">Client Address</label>
+                    <textarea id="client-address" rows="3"></textarea>
+                </div>
+            </div>
+        </div>
+        
+        <table class="items-table">
+            <thead>
+                <tr>
+                    <th width="5%">#</th>
+                    <th width="45%">Description</th>
+                    <th width="15%">Quantity</th>
+                    <th width="15%">Rate</th>
+                    <th width="15%">Amount</th>
+                    <th width="5%"></th>
+                </tr>
+            </thead>
+            <tbody id="items-tbody">
+            </tbody>
+        </table>
+        
+        <button class="add-item-btn no-print" id="add-item-btn">+ Add Item</button>
+        
+        <div class="totals-section">
+            <div>Subtotal: <span id="subtotal">0.00</span></div>
+            <div>Tax (%): <input type="number" id="tax-rate" value="10" min="0" max="100" class="no-print" style="width: 60px; display: inline-block;"> 
+                <span id="tax-amount">0.00</span></div>
+            <div>Discount: <input type="number" id="discount" value="0" min="0" class="no-print" style="width: 60px; display: inline-block;"> 
+                <span id="discount-amount">0.00</span></div>
+            <div class="grand-total">Total: <span id="grand-total">0.00</span></div>
+        </div>
+        
+        <div class="form-group no-print">
+            <label for="notes">Notes</label>
+            <textarea id="notes" rows="3" placeholder="Thank you for your business!"></textarea>
+        </div>
+        
+        <div class="action-buttons no-print">
+            <button class="print-btn" id="print-btn">Print Invoice</button>
+            <div>
+                <button class="clear-btn" id="clear-btn">Clear All</button>
+                <button class="save-btn" id="save-btn">Save as PDF</button>
+            </div>
+        </div>
+    </div>
+
+
+    <script src="bill.js"></script>
+  
+</body>
+</html>
