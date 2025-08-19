@@ -234,3 +234,75 @@
             // Add first item by default
             addItem();
         });
+        // Add this function to generate QR code
+function generateQRCode() {
+    const invoiceNumber = document.getElementById('invoice-number').value;
+    const invoiceDate = document.getElementById('invoice-date').value;
+    const grandTotal = document.getElementById('grand-total').textContent;
+    const clientName = document.getElementById('client-name').value || 'No Name';
+    
+    const qrData = `Invoice: ${invoiceNumber}\nDate: ${invoiceDate}\nClient: ${clientName}\nAmount: ₹${grandTotal}`;
+    
+    const qrCodeElement = document.getElementById('qr-code');
+    qrCodeElement.innerHTML = ''; // Clear previous QR code
+    
+    QRCode.toCanvas(qrCodeElement, qrData, {
+        width: 100,
+        margin: 1,
+        color: {
+            dark: '#000000',
+            light: '#ffffff'
+        }
+    }, function (error) {
+        if (error) console.error(error);
+    });
+}
+
+// Call this function whenever the bill changes
+function updateQRCode() {
+    calculateTotals();
+    generateQRCode();
+}
+
+// Modify your existing event listeners to use updateQRCode instead of calculateTotals
+document.getElementById('tax-rate').addEventListener('input', updateQRCode);
+document.getElementById('discount').addEventListener('input', updateQRCode);
+
+// Also update the saveAsPDF function to include the QR code
+function saveAsPDF() {
+    // ... existing code ...
+    
+    // Add QR code to PDF
+    const qrCanvas = document.querySelector('#qr-code canvas');
+    if (qrCanvas) {
+        const qrDataUrl = qrCanvas.toDataURL('image/png');
+        doc.addImage(qrDataUrl, 'PNG', 160, lastY + 25, 30, 30);
+    }
+    
+    // ... rest of existing code ...
+}
+
+// Generate initial QR code when page loads
+document.addEventListener('DOMContentLoaded', function() {
+    // ... existing code ...
+    
+    // Add this at the end of the event listener
+    generateQRCode();
+    
+    // Update all your item-related functions to call updateQRCode instead of calculateTotals
+    // For example:
+    function renderItems() {
+        // ... existing code ...
+        updateQRCode(); // instead of calculateTotals()
+    }
+    
+    function updateItem(e) {
+        // ... existing code ...
+        updateQRCode(); // instead of calculateTotals()
+    }
+    
+    function deleteItem(e) {
+        // ... existing code ...
+        updateQRCode(); // instead of calculateTotals()
+    }
+});

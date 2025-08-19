@@ -8,6 +8,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.25/jspdf.plugin.autotable.min.js"></script>
     <link rel="stylesheet" href="bill.css">
+<script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.1/build/qrcode.min.js"></script>
 </head>
 <body>
     <div class="container">
@@ -92,6 +93,10 @@
             </div>
         </div>
     </div>
+    <div class="qr-code-container no-print">
+    <div id="qr-code"></div>
+    <p>Scan to verify</p>
+</div>
 
     <script src="bill.js"></script>
 </body>

@@ -227,3 +227,36 @@
                 white-space: normal;
             }
         }
+        .qr-code-container {
+    margin-top: 20px;
+    text-align: center;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    display: inline-block;
+}
+
+.qr-code-container p {
+    margin-top: 5px;
+    font-size: 12px;
+    color: #666;
+}
+
+#qr-code {
+    width: 100px;
+    height: 100px;
+    margin: 0 auto;
+}
+
+@media print {
+    .qr-code-container {
+        border: none;
+        position: absolute;
+        right: 20px;
+        bottom: 20px;
+    }
+    
+    .qr-code-container p {
+        display: none;
+    }
+}
